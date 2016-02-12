@@ -7,6 +7,8 @@ public class VectorMovement : MonoBehaviour {
     public int speed = 10;
     public int jump = 15;
 
+    public Animator anim;
+
     //public Transform groundCheck;
     //public float groundCheckRadius;
     //public LayerMask WhatisGround;
@@ -16,6 +18,7 @@ public class VectorMovement : MonoBehaviour {
 
 	void Start () {
         myRigidBody = GetComponent<Rigidbody>();
+        anim = GetComponentInChildren<Animator>();
 	}
     
     void FixedUpdate()
@@ -46,11 +49,16 @@ public class VectorMovement : MonoBehaviour {
             myRigidBody.velocity = new Vector3(myRigidBody.velocity.x, myRigidBody.velocity.y, -speed);
         }
 
+        //if(Mathf.Abs(myRigidBody.velocity.x) > 0.1 || Mathf.Abs(myRigidBody.velocity.z) > 0.1)
+        //transform.forward = -myRigidBody.velocity;
+
         //jumping
         //if (Input.GetKeyDown(KeyCode.Space) && grounded)
         //{
-           // myRigidBody.velocity = new Vector3(myRigidBody.velocity.x, jump, myRigidBody.velocity.z);
+        // myRigidBody.velocity = new Vector3(myRigidBody.velocity.x, jump, myRigidBody.velocity.z);
         //}
-
+        if (anim != null) {
+            //anim.SetFloat("Blend",myRigidBody.velocity.magnitude);
+        }
     }
 }
